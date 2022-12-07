@@ -1,0 +1,33 @@
+start programa{
+    Atlas begin(){
+	
+	openDoor(puertaEntrada,false);
+	ventilate(10,true,true,true);//Tiempo en minutos que se ejecutará la función, eliminador de bacterias, abrir puertas,vnt
+	emptyRoom(true,6,true,true);//Sanitizar, 6 segundos,puertas ventanas,abiertas, luces encendidas
+ //DESHACER
+emptyRoom(false,1,false,false);//NO Sanitizar, 3 minutos,puertas ventanas,abiertas
+
+condition(personas<40){
+openDoor(puertaEntrada,true); //Desde el código intemedio hacemos delay en los motores
+registerA("Detectado");
+openDoor(puertaEntrada,false);
+}
+
+condition(personas<40){
+openDoor(puertaEntrada,true); //Desde el código intemedio hacemos delay en los motores
+personas++;
+registerA("Detectado entrando");
+openDoor(puertaEntrada,false);
+}
+
+
+condition(personas > 40){
+openDoor(puertaEntrada,true); //Desde el código intemedio hacemos delay en los motores
+personas--;
+registerA("Detectado entrando");
+openDoor(puertaEntrada,false);
+}
+
+
+}
+}End;
